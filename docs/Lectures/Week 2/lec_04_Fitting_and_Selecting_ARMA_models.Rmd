@@ -1,7 +1,7 @@
 ---
 title: "Fitting and Selecting ARIMA models"
 author: "Eli Holmes"
-date: "17 Jan 2019"
+date: "14 Jan 2021"
 output:
   beamer_presentation: default
   ioslides_presentation:
@@ -29,12 +29,12 @@ library(urca)
 ```
 
 
-## Box-Jenkins method
+## Today's topic: Box-Jenkins method
 
 A. Model form selection
 
   1. Evaluate stationarity
-  2. Selection of the differencing level (d) -- to fix stationarity problems
+  2. Fix stationarity problems - Selection of the differencing level (d)
   3. Selection of the AR level (p)
   4. Selection of the MA level (q)
 
@@ -42,9 +42,15 @@ B. Parameter estimation
 
 C. Model checking
 
-## Good news
+  1. Test model residuals for distribution assumptions (e.g. Normality)
+  2. Test model residuals for temporal correlation
 
-Much of the Box-Jenkins method will be automated with the **forecast** package functions, which we will use in the lab.
+
+## 
+
+* For ARIMA models, much of the Box-Jenkins method will be automated with the **forecast** package functions, which we will use in the lab.
+
+* When you work on state-space models (so ARMA with observation error), you will follow a 'Box-Jenkins' workflow though the process will not be so automated.
 
 ## Stationarity
 
@@ -146,7 +152,7 @@ White noise ($b=0$)
 
 ## Non-stationarity
 
-One of the most common forms of non-stationarity that is tested for is that the process is a random walk $x_t = x_{t-1} + e_t$.  A test for an underlying random walk is called a 'unit root' test.
+One of the most common forms of non-stationarity that is tested for is that the process is a random walk $x_t = x_{t-1} + e_t$.  A random walk is called a 'unit root' process in the time series literature. A test for an underlying random walk is called a 'unit root' test.
 
 
 ```{r fig.nonstationarity, fig.height = 4, fig.width = 8, fig.align = "center", echo=FALSE}
@@ -200,6 +206,7 @@ Why is evaluating stationarity important?
 
 - Many AR models have a flat level or trend and time-constant variance.  If your data do not have those properties, you are fitting a model that is fundamentally inconsistent with your data.
 - Many standard algorithms for fitting ARIMA models assume stationarity.  Note, you can fit ARIMA models without making this assumption, but you need to use the appropriate algorithm.
+- Many time-series models used in environmental science are random walk models, thus are non-stationary, e.g. movement, population growth, genetic drift. One must be careful to either deal with non-stationarity via transformation (differencing or covariates) OR use an algorithm which doesn't assume stationarity. We will do mainly the latter in this class.
 
 ## Testing for stationarity
 
@@ -218,7 +225,7 @@ The visual test is simply looking at a plot of the data versus time.  Look for
 - Change in the variance over time.  Do deviations away from the mean change over time, increase or decrease?
 
 
-## Example anchovy and sardine catch in Greek waters
+## Anchovy and sardine catch in Greek waters
 
 ```{r fig.vis, fig.height = 4, fig.width = 8, fig.align = "center", echo=FALSE}
 require(ggplot2)
@@ -231,11 +238,11 @@ ggplot(dat, aes(x=Year, y=log.metric.tons)) +
 
 ## Dickey-Fuller test
 
-The Dickey=Fuller test (and Augmented Dickey-Fuller test) look for evidence that the time series has a unit root.  
+The Dickey=Fuller test (and Augmented Dickey-Fuller test) look for evidence that the time series has a unit root (a random walk process).  
 
 The **null hypothesis** is that the time series has a unit root, that is, it has a random walk component.  
 
-The **alternative hypothesis** is some variation of stationarity.  The test has three main verisons. 
+The **alternative hypothesis** is some variation of stationarity.  The test has three main versions. 
 
 ## Dickey-Fuller nulls and alternatives
 
@@ -329,7 +336,7 @@ adf.test(x, alternative = c("stationary", "explosive"),
          k = trunc((length(x)-1)^(1/3)))
 ```
 
-## Example: Dickey-Fuller tests on the anchovy time series
+## Dickey-Fuller tests on the anchovy time series
 
 Here is how to apply this test to the anchovy data. The null hypothesis is not rejected.  That is not what we want.
 
@@ -346,6 +353,10 @@ The `urca` R package can also be used to apply the Dickey-Fuller tests.  Use `la
 ur.df(y, type = c("none", "drift", "trend"), lags = 0)
 ```
 
+* none: $x_t = \phi x_{t-1} + e_t$
+* drift: $x_t = \phi x_{t-1} + \mu + e_t$
+* trend: $x_t = \phi x_{t-1} + \mu + a t + e_t$
+
 ## Dickey-Fuller test with 'ur.df'
 
 ```{r dickey.fuller, message=FALSE, warning=FALSE}
@@ -355,22 +366,40 @@ test
 
 ## Dickey-Fuller test with 'ur.df'
 
-The test statistic and the critical value at $\alpha = 0.05$ are
+The test statistics and the critical values at $\alpha = 0.05$ are
 ```{r teststat}
 attr(test, "teststat")
 ```
 ```{r cval}
 attr(test,"cval")
 ```
-The statistic is larger than the critical value and thus the null hypothesis of non-stationarity is not rejected. That's not what we want.
 
 ##
 
-The $\tau_3$ is the one we want. This is the stationarity parameter.
+The `tau3` is the one we want. This is the test that $\gamma=0$ which would mean that $\phi=0$ (random walk).
 
 $x_t = \phi x_{t-1} + \mu + a t + e_t$
 
-$x_t - x_{t-1} = \tau_3 x_{t-1} + \phi_2 + \phi_3 t + e_t$
+$x_t - x_{t-1} = \gamma x_{t-1} + \mu + a t + e_t$
+
+The hypotheses reported in the output are
+
+* `tau` (or `tau2` or `tau3`): $\gamma=0$
+* `phi` reported values: are for the tests that $\gamma=0$ and/or the other parameters $a$ and $\mu$ are also 0.
+
+Since we are focused on the random walk (non-stationary) test, we focus on the `tau`  (or `tau2` or `tau3`) statistics and critical values
+
+##
+
+```{r teststat2}
+attr(test, "teststat")
+```
+```{r cval2}
+attr(test,"cval")
+```
+
+The `tau3` statistic is larger than the critical value and thus the null hypothesis of non-stationarity is not rejected. That's not what we want. Note, you can also get the test statistic and critical values at the bottom of the output from `urca::summary(test)`.
+
 
 <!--
 
@@ -426,11 +455,15 @@ The test statistic values are the same, but we need to look up the critical valu
 
 The Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test has as the null hypothesis that the time series is stationary around a level trend (or a linear trend). The alternative hypothesis for the KPSS test is a random walk.
 
+```
+tseries::kpss.test(x, null = c("Level", "Trend"))
+```
+
 The stationarity assumption is general; it does not assume a specific type of stationarity such as white noise.
 
 If both KPSS and Dickey-Fuller tests support non-stationarity, then the stationarity assumption is not supported.
 
-## Example: KPSS tests
+## KPSS test with the anchovy data
 
 ```{r kpss.test, message=FALSE, warning=FALSE}
 tseries::kpss.test(anchovyts, null="Trend")
@@ -438,6 +471,9 @@ tseries::kpss.test(anchovyts, null="Trend")
 
 Here `null="Trend"` was included to account for the increasing trend in the data.  The null hypothesis of stationarity is rejected.  Thus both the KPSS and Dickey-Fuller tests support the hypothesis that the anchovy time series is non-stationary.  That's not what we want.
 
+## Fix stationarity problems
+
+In this lecture we will use differencing, the I in ARIMA model refers to differencing.
 
 ## Differencing the data to make the mean stationary
 
@@ -507,7 +543,7 @@ attr(test, "teststat")
 attr(test,"cval")
 ```
 
-The null hypothesis of NON-stationairity IS rejected. That is good.
+The test statistic for $\tau_2$ is less than the critical at $\alpha$ equal 0.05. The null hypothesis of NON-stationairity IS rejected. That is good.
 
 
 ## `forecast::ndiffs()` function
@@ -519,11 +555,13 @@ forecast::ndiffs(anchovyts, test="kpss")
 forecast::ndiffs(anchovyts, test="adf")
 ```
 
+The test indicates that one difference ($x_t - x_{t-1}$) will lead to stationarity.
+
 ## Summary
 
 Test stationarity before you fit a ARMA model.
 
-Visual test: Do the data fluctuate around a level or do they have a trend or look like a random walk?
+**Visual test**: Do the data fluctuate around a level or do they have a trend or look like a random walk?
 
 _Yes or maybe?_  -> Apply a "unit root" test. ADF or KPSS
 
@@ -541,18 +579,18 @@ A. Model form selection
 
   1. Evaluate stationarity
   2. Selection of the differencing level (d) -- to fix stationarity problems
-  3. **Selection of the AR level (p)**
-  4. **Selection of the MA level (q)**
+  3. **<span style="color: blue;">Selection of the AR level (p)</span>**
+  4. **<span style="color: blue;">Selection of the MA level (q)</span>**
 
-**B. Parameter estimation**
+**<span style="color: blue;">B. Parameter estimation</span>**
 
 C. Model checking
 
 ## ACF and PACF
 
-On Tuesday, you learned how to use ACF and PACF to visually infer the AR and MA lags for a ARMA model.
+On Tuesday, you learned how to use ACF and PACF to visually infer the AR and MA lags for a ARMA model. Here is the ACF and PACF of the differenced anchovy time series.
 
-```{r pacf-acf-anchovy, echo=FALSE, fig.cap="ACF and PACF of anchovy time series."}
+```{r pacf-acf-anchovy, echo=FALSE}
 par(mfrow=c(1,2))
 acf(diff(anchovy))
 pacf(diff(anchovy))
@@ -580,7 +618,7 @@ The output indicates that the 'best' model is a MA(1) with first difference.  "w
 
 ## Trace = TRUE
 
-By default, step-wise selection is used for the model search. You can see what models that `auto.arima()` tried using `trace=TRUE`.  The models are selected on AICc by default and the AICc value is shown next to the model.
+By default, step-wise selection is used for the model search. You can see what models that `auto.arima()` tried using `trace=TRUE`.  The models are selected on AICc by default.
 
 ```{r}
 forecast::auto.arima(anchovy, trace=TRUE)
@@ -594,7 +632,7 @@ $$x_t - x_{t-1} = \mu + w_t + \theta_1 w_{t-1}$$
 
 where $w_t$ is white noise.
 
-## Example: Fit to simulated AR(2) data
+## Fit to simulated AR(2) data
 
 ```{r fitting.example.1}
 set.seed(100)
@@ -619,7 +657,7 @@ for(i in 1:100){
 
 ##
 
-Overwhelmingly the correct type of model (AR) is selected, but usually a simpler model of AR(2) is chosen over AR(2).
+Overwhelmingly the correct type of model (AR) is selected, but usually a simpler model of AR(1) is chosen over AR(2).
 
 Table heading is AR order - MA order.
 
@@ -629,7 +667,7 @@ table(save.fits)
 
 ## stepwise=FALSE
 
-By default, step-wise selection is used and an approximation is used for the models tried in the model selection step.  For a final model selection, you should turn these off.
+By default, step-wise selection is used and an approximation is used for the models tried in the model selection step.  For a final model selection, you should turn these off to fit a large set of models.
 
 ```{r}
 forecast::auto.arima(anchovy, stepwise=FALSE, 
@@ -665,6 +703,8 @@ B. Parameter estimation
 Residuals = difference between the expected (fitted) value of $x_t$ and the data
 
 There is no observation error in an ARMA model. The expected value is the $x_t$ expected from data up to $t-1$.
+
+For example, the residual for an AR(2) model is $y_t - \hat{x}_t$.
 
 $x_t = \phi_1 x_{t-1} + \phi_2 x_{t-2} + w_t$
 
@@ -712,87 +752,6 @@ forecast::checkresiduals(fit, plot=FALSE)
 
 $p>0.05$ would be interpreted as not enough statistical evidence to reject the null hypothesis.
 
-## Forecasting (brief)
-
-The basic idea of forecasting with an ARIMA model to estimate the parameters and forecast forward.
-
-For example, let's say we want to forecast with this ARIMA(2,1,0) model:
-$$y_t = \mu + \beta_1 y_{t-1} + \beta_2 y_{t-2} + e_t$$
-or as `Arima()` would write this model:
-$$(y_t-m) = \beta_1 (y_{t-1}-m) + \beta_2 (y_{t-2}-m) + e_t$$
-where $y_t$ is the first difference of our anchovy data. $\mu = m(1 - \beta_1 - \beta_2)$.
-
-##
-
-Let's estimate the $\beta$'s for this model from the anchovy data.
-
-```{r}
-fit <- forecast::Arima(anchovyts, order=c(2,1,0), include.constant=TRUE)
-coef(fit)
-```
-
-```{r}
-mu <- coef(fit)[3]*(1-coef(fit)[1]-coef(fit)[2])
-mu
-```
-
-##
-
-So we will forecast with this model:
-
-$$y_t = 0.1065807-0.53850433 y_{t-1} - 0.44732522 y_{t-2} + e_t$$
-
-To get our forecast for 1990, we do this
-
-$$(x_{1990}-x_{1989}) = 0.106 - 0.538 (x_{1989}-x_{1988}) - 0.447 (x_{1988}-x_{1987})$$
-
-Thus
-
-$$x_{1990} = x_{1989}+0.106 -0.538  (x_{1989}-x_{1988}) - 0.447 (x_{1988}-x_{1987})$$
-
-##
-
-Here is R code to do that:
-
-```{r}
-anchovyts[26]+mu+coef(fit)[1]*(anchovyts[26]-anchovyts[25])+
-  coef(fit)[2]*(anchovyts[25]-anchovyts[24])
-```
-
-## Forecasting with `forecast()`
-
-`forecast(fit, h=h)` automates the forecast calculations for us and computes the upper and lower prediction intervals.  Prediction intervals include uncertainty in parameter estimates plus the process error uncertainty.
-
-```{r}
-fr <- forecast::forecast(fit, h=5)
-fr
-```
-
-## Plotting our forecasts
-
-```{r}
-plot(fr, xlab="Year")
-```
-
-## Missing values
-
-Missing values are allowed for `Arima()` and `arima()`. We can produce forecasts with the same code.
-
-```{r fig.show=FALSE}
-anchovy.miss <- anchovyts
-anchovy.miss[10:11] <- NA
-anchovy.miss[20:21] <- NA
-fit <- forecast::auto.arima(anchovy.miss)
-fr <- forecast::forecast(fit, h=5)
-fr
-```
-
-##
-
-```{r}
-plot(fr)
-```
-
 
 ## Seasonality
 
@@ -821,18 +780,29 @@ Use `?ts` to see more examples of how to set up ts objects.
 plot(chinookts)
 ```
 
-## Seasonal ARIMA model
+## Seasonal ARIMA model SARIMA
 
-Seasonally differenced data:
+Seasonally differenced data, e.g. chinook data January 1990 - chinook data January 1989.
 
 $$z_t = x_t - x_{t+s} - m$$
 
 Basic structure of a seasonal AR model
 
-$z_t$ = AR(p) + AR(season) + AR(p+season)
+seasonal differenced data = AR(seasonal) + AR(non-seasonal) + AR(p+season)
+
+##
+
+For example, SARIMA model could capture this process
+
+1. AR(seasonal) January in $t$ is correlated with January in $t-1$
+2. AR(non-seasonal) January differences are correlated with February differences
+3. AR(p+season) appears because of 1 and 2
+
+##
 
 
-Example AR(1) non-seasonal part + AR(1) seasonal part
+
+$z_t$ = AR(1) + AR(12) + AR(1+12)
 
 $$z_t = \phi_1 z_{t-1} + \Phi_1 z_{t-12} - \phi_1\Phi_1 z_{t-13}$$
 
@@ -840,8 +810,114 @@ $$z_t = \phi_1 z_{t-1} + \Phi_1 z_{t-12} - \phi_1\Phi_1 z_{t-13}$$
 
 ARIMA (p,d,q)(ps,ds,qs)S
 
+ARIMA (non-seasonal part)(seasonal part)Frequency
+
+ARIMA (non-seasonal) means $t$ correlated with $t-1$
+
+ARIMA (seasonal) means $t$ correlated with $t-s$
+
+
+## Examples
+
+ARIMA (1,0,0)(1,0,0)[12]
+
+What data are we modeling? Get the differences
+
+$$z_t = x_t - m$$
+
+Write out the AR parts with $z_t$
+
+$$z_t = \phi_1 z_{t-1} + \Phi_1 z_{t-12} - \phi_1\Phi_1 z_{t-13} + w_t$$
+
+Write out the MA parts, the $w_t$. No MA in this model.
+
+$$w_t = e_t$$
+
+##
 
 ARIMA (1,0,0)(1,1,0)[12]
+
+Figure out $z_t$. Just a seasonal difference.
+
+$$z_t = x_t - x_{t-12} - m$$
+
+Write out the AR parts with $z_t$
+
+$$z_t = \phi_1 z_{t-1} + \Phi_1 z_{t-12} - \phi_1\Phi_1 z_{t-13} + w_t$$
+
+Write out the MA parts, the $w_t$. No MA in this model. $w_t$ is white noise.
+
+$$w_t = e_t$$
+
+
+## Seasonal random walk model
+
+ARIMA(0,0,0)(0,1,0)[12]
+
+expected January 1990 = January 1989 + constant mean
+
+Figure out $z_t$. $m$ is the mean seasonal difference.
+
+$$z_t = x_t - x_{t-12} - m$$
+
+Write out the AR parts with $z_t$. No AR part.
+
+$$z_t = w_t$$
+
+Write out the MA parts, the $w_t$.
+
+$$w_t = e_t$$
+
+## Seasonal random walk model with random trend
+
+ARIMA(0,1,0)(0,1,0)[12]
+
+expected Feb 1990 = Feb 1989 + (Jan 1990 - Jan 1989)
+
+Figure out $z_t$. $m$ is the mean seasonal difference.
+
+$$z_t = (x_t - x_{t-12}) - (x_{t-1} - x_{t-13}) - m$$
+
+Write out the AR parts with $z_t$. No AR part.
+
+$$z_t = w_t$$
+
+Write out the MA parts, the $w_t$.
+
+$$w_t = e_t$$
+
+
+## airline model
+
+ARIMA(0, 1, 1)(0, 1, 1)[12]
+
+Figure out $z_t$. 
+
+$$z_t = (x_t - x_{t-12}) - (x_{t-1} - x_{t-13}) - m$$
+
+Write out the AR parts with $z_t$. No AR part.
+
+$$z_t = w_t$$
+
+Write out the MA parts, the $w_t$.
+
+$$w_t = e_t - \theta_1 e_{t-1} - \Theta_1 e_{t-12} + \theta_1\Theta_1 e_{t-13}$$
+
+## Example with longer lags
+
+ARIMA (2,0,1)(1,0,2)[12]
+
+What data are we modeling? Get the differences
+
+$$z_t = x_t - m$$
+
+Write out the AR parts with $z_t$
+
+$$z_t = \phi_1 z_{t-1} + \phi_2 z_{t-2} + \Phi_1 z_{t-12} - (\text{cross products}) + w_t$$
+
+Write out the MA parts, the $w_t$. 
+
+$$w_t = e_t - \theta_1 e_{t-1} - \Theta_1 e_{t-12} - \Theta_2 e_{t-24} + (\text{cross products})$$
 
 ## `auto.arima()` for seasonal ts
 
@@ -854,23 +930,8 @@ fit <- forecast::auto.arima(traindat)
 fit
 ```
 
-## Forecast using seasonal model
 
-```{r}
-fr <- forecast::forecast(fit, h=12)
-plot(fr)
-points(testdat)
-```
-
-## Missing values
-
-Missing values are ok when fitting a seasonal ARIMA model
-
-```{r echo=FALSE}
-plot(fr)
-```
-
-## Summary
+## Summary for seasonal models
 
 Basic steps for identifying a seasonal model.  **forecast** automates most of this.
 
@@ -884,9 +945,9 @@ Basic steps for identifying a seasonal model.  **forecast** automates most of th
     * Season and no trend.  Take a difference of lag = season
     * No seasonality but a trend.  Try a first difference
     * Both. Do both types of differences
-    * Neither. No differencing.
-    * Random walk. First difference.
-    * Parametric looking curve. Tranform.
+    * Neither. No differencing
+    * Random walk. First difference
+    * Parametric looking curve. Transform
 
 ## Summary
 
@@ -895,80 +956,5 @@ Basic steps for identifying a seasonal model.  **forecast** automates most of th
 
 * Estimate likely models and compare with model selection criteria (or cross-validation). Use `TRACE=TRUE`
 
-* Do residual checks. 
-
-### Intercepts and drift in `Arima()`
-
-If $d=0$, 
-
-* $d=0$: Arima(x, order=c(1,0,0), include.drift=FALSE, include.mean=TRUE)
-
-$m$ is estimated and called `intercept`.
-
-$$(x_t-m) = \phi_1 (x_{t-1}-m) + w_t$$
-
-* $d=0$: Arima(x, order=c(1,0,0), include.drift=TRUE, include.mean=FALSE)
-
-$\mu$ is estimated and called `drift`.
-
-$$x_t = \mu + \phi_1 x_{t-1} + w_t$$
-* $d=0$: Arima(x, order=c(1,0,0), include.drift=TRUE, include.mean=TRUE)
-
-$\mu$ and $m$ are estimated and called `drift` and `intercept`.
-
-$$(x_t-m) = \mu + \phi_1 (x_{t-1}-m) + w_t$$
-
-If $d=1$, then `include.mean` is ignored in `Arima()` and `include.drift` estimates an intercept like `include.mean` in the $d=0$ case, but it is called `drift` in the output. $y_t = x_t-x_{t-1}$.
-
-* $d=1$: Arima(x, order=c(1,1,0), include.drift=TRUE)
-
-$m$ is estimated and called `drift`. 
-
-$$(y_t-m) = \phi_1 (y_{t-1}-m) + w_t$$
-* $d=1$: Arima(x, order=c(1,1,0), include.drift=FALSE)
-
-$$y_t = \phi_1 y_{t-1} + w_t$$
-
-* $d=1$: Arima(x, order=c(0,1,0), include.drift=TRUE)
-
-This is a random walk with drift.
-
-$$(y_t-m) = w_t$$
-which is
-
-$$x_t = m + x_{t-1} + w_t$$
-If $d\ge2$, then both `include.mean` and `include.drift` are ignored. $z_t = y_t-y_{t-1}$.
-
-* $d=2$: Arima(x, order=c(1,2,0))
-
-$$z_t = \phi_1 z_{t-1} + w_t$$
-
-### Intercepts in `arima()`
-
-If $d=0$, 
-
-* $d=0$: arima(x, order=c(1,0,0), include.mean=TRUE)
-
-$m$ is estimated and called `intercept`.
-
-$$(x_t-m) = \phi_1 (x_{t-1}-m) + w_t$$
-
-
-If $d=1$, then `include.mean` is ignored and no intercept can be estimated. 
-
-* $d=1$: arima(x, order=c(1,1,0), include.mean=TRUE)
-
-$$y_t = \phi_1 y_{t-1}+ w_t$$
-* $d=1$: arima(x, order=c(0,1,0))
-
-Because an intercept cannot be estimated, this means that a random walk with drift cannot be estimated by `arima()`.
-
-$$y_t = w_t$$
-only can be estimated which is random walk without drift.
-
-$$x_t = x_{t-1} + w_t$$
-
-
-
-
+* Do residual checks 
 

@@ -5,7 +5,7 @@ navbar:
     - text: ""
       icon: fa-home fa-lg
       href: index.html
-    - text: "Syllabus"
+    - text: "Schedule"
       href: asyllabus.html
     - text: "Lectures"
       href: lectures.html
@@ -17,10 +17,15 @@ navbar:
       menu:
       - text: "Project details"
         href: final_proj.html
+      - text: "Peer review details"
+        href: review_guide.html
       - text: "Former projects"
         href: student_pubs.html
     - text: "References"
       href: references.html
+    - text: "Post questions"
+      href: https://github.com/nwfsc-timeseries/safs-timeseries/issues
+
 output_dir: "docs"
 output:
   html_document:

@@ -1,5 +1,5 @@
 ---
-title: "2019 Syllabus"
+title: "2021 Schedule"
 output: html_document
 ---
 
@@ -18,14 +18,14 @@ library(kableExtra)
 
 ```{r generate_dates, include=FALSE}
 ## first day of class
-start_date <- as.Date("2019-01-08")
+start_date <- as.Date("2021-01-05")
 ## all tues
 tues <- seq.Date(from = start_date, by = 7, length.out = 10)
 ## all thur
 thur <- tues + 2
 ## all qtr
 qtr <- sort(c(tues, thur))
-qtr <- sub("0(\\d)", "\\1", format(qtr, "%d %B"))
+qtr <- sub("0(\\d)", "\\1", format(qtr, "%d %b"))
 ```
 
 ```{r weeks, include = FALSE}
@@ -35,19 +35,19 @@ week_lecs <- list(d1 = intro,
                    d4 = forecast,
                    d7 = uni_ss,
                    d8 = marss,
-                   d5 = model_inf,
+                   d5 = marss_covariates,
                    d12 = dfa,
                    d10 = dlm,
-                   d11 = bayes,
-                   d13 = bayes2,
-                   d16 = HMMs,
-                   d9 = ets,
-                   d15 = covariates,
+                   d11 = HMMs,
+                   d13 = bayes,
+                   d16 = bayes2,
+                   d9 = model_inf,
+                   d15 = interactions1,
                    d17 = EDM,
                    d6 = freqdomain,
-                   d14 = interactions1,
+                   d14 = ets,
                    d18 = spatial,
-                   d19 = zeros,
+                   d19 = present1,
                    d20 = present1
 )
 ```

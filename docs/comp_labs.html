@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
 <title>Computer Labs</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -22,8 +23,20 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon16x16.ico" type="image/x-icon">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -71,9 +84,8 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
+
 
 <style type = "text/css">
 .main-container {
@@ -87,13 +99,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -109,7 +126,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -129,6 +145,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -150,19 +203,74 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -181,13 +289,13 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
     
   </a>
 </li>
 <li>
-  <a href="asyllabus.html">Syllabus</a>
+  <a href="asyllabus.html">Schedule</a>
 </li>
 <li>
   <a href="lectures.html">Lectures</a>
@@ -209,12 +317,18 @@ $(document).ready(function () {
       <a href="final_proj.html">Project details</a>
     </li>
     <li>
+      <a href="review_guide.html">Peer review details</a>
+    </li>
+    <li>
       <a href="student_pubs.html">Former projects</a>
     </li>
   </ul>
 </li>
 <li>
   <a href="references.html">References</a>
+</li>
+<li>
+  <a href="https://github.com/nwfsc-timeseries/safs-timeseries/issues">Post questions</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -233,38 +347,43 @@ $(document).ready(function () {
 </div>
 
 
-<p><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-mlr.html">Link to Lab Book</a></p>
+<p><br></p>
+<div id="meeting-days-times" class="section level3">
+<h3>Meeting days &amp; times</h3>
+<p>Thursday from 3:00-3:50 via <a href="https://washington.zoom.us/j/96843523832">Zoom</a></p>
+</div>
+<div id="lab-book" class="section level3">
+<h3>Lab book</h3>
+<p>You can find the electronic lab book <a href="https://nwfsc-timeseries.github.io/atsa-labs">here</a>.</p>
 <!-- first is PDF, 2nd PPT, 3rd Rmd -->
+<div style="border: 1px solid #ddd; padding: 0px; border-style: none;overflow-y: scroll; height:700px; ">
 <table class="table table-striped" style="width: auto !important; ">
 <caption>
 </caption>
 <thead>
 <tr>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Date
 </th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Instructor
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 Topics
 </th>
-<th style="text-align:center;">
-Lab
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
+Lab Material
 </th>
-<th style="text-align:center;">
-Data
-</th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Video
 </th>
-<th style="text-align:center;">
-YouTube
-</th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Homework
 </th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
+Due Date
+</th>
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Key
 </th>
 </tr>
@@ -272,7 +391,7 @@ Key
 <tbody>
 <tr>
 <td style="text-align:center;width: 8em; ">
-8 January
+5 Jan
 </td>
 <td style="text-align:center;">
 <br>
@@ -281,17 +400,15 @@ Key
 Matrices &amp; matrix algebra <br>(review on your own) <br>
 </td>
 <td style="text-align:center;">
-<br><a href="Labs/Week%200%20basic%20matrix/basic-matrix-math.pdf">PDF 1</a><br>
+<a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-basicmat.html">html 1</a><br><a href="Labs/Week%200%20basic%20matrix/basic-matrix-math.pdf">PDF 1</a><br>
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
+Optional (not part of grade): Listed at end of <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-basicmat.html">Chapter 1</a> in the ATSA lab book. <br>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/D2rqcbRtjCA">YouTube</a>
-</td>
-<td style="text-align:center;">
-Listed at end of lab <br>
+Optional <br>
 </td>
 <td style="text-align:center;">
 <a href="Labs/Week%200%20basic%20matrix/basic-matrix-math-key.pdf">Key</a>
@@ -299,7 +416,7 @@ Listed at end of lab <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-10 January
+7 Jan
 </td>
 <td style="text-align:center;">
 Eli/Mark <br>
@@ -308,16 +425,16 @@ Eli/Mark <br>
 Writing models in matrix form (through section 2.5) <br>Basic time series functions <br>Autocorrelation <br>
 </td>
 <td style="text-align:center;">
-<br><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-mlr.html">html 1</a> <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-ts.html">html 2</a>
+<a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-mlr.html">html 1</a> <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-ts.html">html 2</a><br><br>
 </td>
 <td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/O_e7v3FiQEjaOJbaBKuxDnXr5QEL93M_0FyKUVOH9SM0QUfxPOhCWoBwykgJ_bRC.XBwGGqdt5oz_uEHb?startTime=1610059899000">Video</a>
 </td>
 <td style="text-align:center;">
+Optional (but important to understand course material): End of <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-mlr.html">Chapter 2</a> in the ATSA lab book. <br>
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-Linear Reg: Prob 1, 2, 3, 4a, 4b, 5a, 6a, 7 <br>
+Optional <br>
 </td>
 <td style="text-align:center;">
 <a href="Labs/Week%201/HW_1_Key.html">Key</a>
@@ -325,7 +442,7 @@ Linear Reg: Prob 1, 2, 3, 4a, 4b, 5a, 6a, 7 <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-15 January
+12 Jan
 </td>
 <td style="text-align:center;">
 <br>
@@ -339,8 +456,7 @@ Linear Reg: Prob 1, 2, 3, 4a, 4b, 5a, 6a, 7 <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -350,7 +466,7 @@ Linear Reg: Prob 1, 2, 3, 4a, 4b, 5a, 6a, 7 <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-17 January
+14 Jan
 </td>
 <td style="text-align:center;">
 Mark &amp; Eli <br>
@@ -359,16 +475,16 @@ Mark &amp; Eli <br>
 Simulating ARMA models <br>Fitting ARIMA models <br>Forecasting with ARIMA models <br>Box-Jenkins Methods <br>
 </td>
 <td style="text-align:center;">
-<a href="https://nwfsc-timeseries.github.io/atsa-labs/Rmds/intro-ts-funcs-lab.Rmd">Rmd 1</a> <a href="Labs/Week%202/ARMA%20Lab%202%20Box%20Jenkins.Rmd">Rmd 2</a><br><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-ts-lab.html">html 1</a> <a href="Labs/Week%202/ARMA_Lab_2_Box_Jenkins.html">html 2</a>
+<a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-tslab.html">html 1</a> <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-boxjenkins-.html">html 2</a><br><br>
 </td>
 <td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/S-BerzaPqhGQp5Q4L3OA78ZLyIsdcd7hmknswl8sqEWjLrt0ldbhVZ-Q_ccsD7oe.Vps_LirtAGpxWItE">Video</a>
 </td>
 <td style="text-align:center;">
+Intro to ts: problems at end of <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-tslab.html">Chapter 4</a> in the ATSA lab book.<br>Fitting ARMA models: problems at end of <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-boxjenkins-.html">Chapter 5</a> in the ATSA lab book. <br>
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-Intro to ts: problems at end of lab<br>Fitting ARMA models: problems at end of lab; <br>Due 5pm Tues 1/22 <br>
+Due next Thurs 11:59 PM PST; email to instructor(s) for lab <br>
 </td>
 <td style="text-align:center;">
 <a href="Labs/Week%202/HW_2_ts_Key.html">Key 1</a> <a href="Labs/Week%202/HW_2_box-jenkins_Key.html">Key 2</a>
@@ -376,7 +492,7 @@ Intro to ts: problems at end of lab<br>Fitting ARMA models: problems at end of l
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-22 January
+19 Jan
 </td>
 <td style="text-align:center;">
 <br>
@@ -390,8 +506,7 @@ Intro to ts: problems at end of lab<br>Fitting ARMA models: problems at end of l
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -401,7 +516,7 @@ Intro to ts: problems at end of lab<br>Fitting ARMA models: problems at end of l
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-24 January
+21 Jan
 </td>
 <td style="text-align:center;">
 Eli <br>
@@ -410,24 +525,24 @@ Eli <br>
 Fitting univariate and mulitvariate state-space models <br>
 </td>
 <td style="text-align:center;">
-<a href="https://nwfsc-timeseries.github.io/atsa-labs/Rmds/fitting-univariate-state-space.Rmd">Rmd 1</a> <a href="https://nwfsc-timeseries.github.io/atsa-labs/Rmds/multivariate-ss.Rmd">Rmd 2</a><br><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-univariate-state-space.html">html 1</a> <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-mss.html">html 2</a>
+<a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-univariate-state-space.html">html 1</a> <a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-mss.html">html 2</a><br><br>
 </td>
 <td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/_EzxfSAEg40yJjDojbpQusfmqr0J_3xdWYsUSiC4P9fX2N3Bn1rBROi0Raw6TO8h.9tyoBEZqcX-alt1P">Video</a>
 </td>
 <td style="text-align:center;">
+HW #2 questions and data: <a href="https://nwfsc-timeseries.github.io/atsa/Labs/Week%203/NO2Lab/HW2-NO2.Rmd">Rmd</a>, <a href="https://nwfsc-timeseries.github.io/atsa/Labs/Week%203/NO2Lab/HW2-NO2.html">html</a>, <a href="https://nwfsc-timeseries.github.io/atsa/Labs/Week%203/NO2Lab/ECNNO2.RData">data</a>, <a href="https://nwfsc-timeseries.github.io/atsa/Labs/Week%203/NO2Lab/HW2-Tips.html">Tips</a> <br>
 </td>
 <td style="text-align:center;">
+Due Sat Jan 30 11:59 PM PST; email to Eli <br>
 </td>
 <td style="text-align:center;">
-Chap 5 Univariate SS: Problems 6 and 7; Chap 6 Multivariate SS: Problems 1,2,3,4,6 (skip 5); you can do Chap 5 problems just using Chap 6 information;<br>Due Thurs 1/31 midnight. <br>
-</td>
-<td style="text-align:center;">
-<a href="Labs/Week%203/HW_3_uss_Key.html">Key 1</a> <a href="Labs/Week%203/HW_3_Key.html">Key 2</a>
+<a href="Labs/Week%203/NO2Lab/HW2-NO2-Key.html">Key</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-29 January
+26 Jan
 </td>
 <td style="text-align:center;">
 <br>
@@ -441,8 +556,7 @@ Chap 5 Univariate SS: Problems 6 and 7; Chap 6 Multivariate SS: Problems 1,2,3,4
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -452,7 +566,7 @@ Chap 5 Univariate SS: Problems 6 and 7; Chap 6 Multivariate SS: Problems 1,2,3,4
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-31 January
+28 Jan
 </td>
 <td style="text-align:center;">
 Mark <br>
@@ -461,24 +575,23 @@ Mark <br>
 Fitting DFA models <br>
 </td>
 <td style="text-align:center;">
-<a href="https://nwfsc-timeseries.github.io/atsa-labs/Rmds/intro-to-dfa.Rmd">Rmd 1</a><br><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/sec-dfa.html">html 1</a>
+<a href="Labs/Week%204/intro-to-dfa.html">html 1</a><br><br>
 </td>
 <td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/qD31qnwHquZsbIlaGKgQjT8fxldG6VojtCBUNFLe0TY-2basVH8_vlgYyUITmoR6._HawijuNOGHQ0W7I">Video</a>
 </td>
 <td style="text-align:center;">
+HW #3 Problems at end of Chap 10 of Lab Book <br>
 </td>
 <td style="text-align:center;">
+Due next Thurs 11:59 PM PST; email to Mark <br>
 </td>
 <td style="text-align:center;">
-Problems at end of lab<br>Due Thurs 2/7 midnight. <br>
-</td>
-<td style="text-align:center;">
-<a href="Labs/Week%204/HW_4_answer_key.pdf">Key</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-5 February
+2 Feb
 </td>
 <td style="text-align:center;">
 <br>
@@ -492,8 +605,7 @@ Problems at end of lab<br>Due Thurs 2/7 midnight. <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -503,7 +615,7 @@ Problems at end of lab<br>Due Thurs 2/7 midnight. <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-7 February
+4 Feb
 </td>
 <td style="text-align:center;">
 Mark <br>
@@ -512,24 +624,23 @@ Mark <br>
 Fitting DLMs <br>
 </td>
 <td style="text-align:center;">
-<a href="https://nwfsc-timeseries.github.io/atsa-labs/Rmds/DLM.Rmd">Rmd 1</a><br><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-dlm-dynamic-linear-models.html">html 1</a>
+<a href="Labs/Week%205/intro-to-dlms.html">html 1</a><br><br><a href="Labs/Week%205/intro-to-dlms.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/qMA7A0uw1eD6FJYL2wIsLEz5SDtipNgK5Qjw_bUEVSfcNh5IncOqFDF-x4AzGOte.U93oJTp68fzUkKLE">Video</a>
 </td>
 <td style="text-align:center;">
+HW #4 Problems at end of Chap 9 in lab book <br>
 </td>
 <td style="text-align:center;">
+Due next Thurs 11:59 PM PST; email to instructor(s) for lab <br>
 </td>
 <td style="text-align:center;">
-Problems end of lab; due midnight next Thurs 2/14 <br>
-</td>
-<td style="text-align:center;">
-<a href="Labs/Week%205/HW_5_answer_key.pdf">Key</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-12 February
+9 Feb
 </td>
 <td style="text-align:center;">
 <br>
@@ -543,8 +654,7 @@ Problems end of lab; due midnight next Thurs 2/14 <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -554,7 +664,7 @@ Problems end of lab; due midnight next Thurs 2/14 <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-14 February
+11 Feb
 </td>
 <td style="text-align:center;">
 Eric <br>
@@ -563,23 +673,23 @@ Eric <br>
 Bayesian estimation <br>STAN <br>
 </td>
 <td style="text-align:center;">
-<br><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-stan.html">html 1</a>
+<a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-stan.html">html 1</a><br><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/Rmds/fitting-models-with-stan.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/N49yDRIBvXImVvX8Hqm5QgM9gAt09Hkj41S-SKK8hfeSgwL0lgIKzdPvVFvn_Uff._edvMfOCxC8NorrV">Video</a>
 </td>
 <td style="text-align:center;">
+HW # 5. Project Methods <br>
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-No homework <br>
+Due next Thurs 11:59 PM PST; email to all instructors <br>
 </td>
 <td style="text-align:center;">
 </td>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-19 February
+16 Feb
 </td>
 <td style="text-align:center;">
 <br>
@@ -593,8 +703,7 @@ No homework <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -604,7 +713,7 @@ No homework <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-21 February
+18 Feb
 </td>
 <td style="text-align:center;">
 Eli <br>
@@ -613,24 +722,22 @@ Eli <br>
 Forecasting with ETS models, Model comparison, Covariates in MARSS models <br>
 </td>
 <td style="text-align:center;">
-<br><a href="Labs/Week%206/multivariate-ss-with-cov.pdf">PDF 1</a><br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-msscov.html">html 1</a> <a href="https://fish-forecast.github.io/Fish-Forecast-Webpage/Exp_Smoothing.html">html 2</a>
+<a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-msscov.html">html 1</a> <a href="https://fish-forecast.github.io/Fish-Forecast-Webpage/Exp_Smoothing.html">html 2</a><br><br>
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
+TBD <br>
 </td>
 <td style="text-align:center;">
+Due next Thurs 11:59 PM PST; email to instructor(s) for lab <br>
 </td>
 <td style="text-align:center;">
-Problems 1-5 in the Covariates Chapter (html 1) <br>
-</td>
-<td style="text-align:center;">
-<a href="Labs/Week%206/multivariate-ss-with-cov-hw-key.html">Key</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-26 February
+23 Feb
 </td>
 <td style="text-align:center;">
 <br>
@@ -644,8 +751,7 @@ Problems 1-5 in the Covariates Chapter (html 1) <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -655,7 +761,7 @@ Problems 1-5 in the Covariates Chapter (html 1) <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-28 February
+25 Feb
 </td>
 <td style="text-align:center;">
 Mark <br>
@@ -669,18 +775,17 @@ Frequency domain methods <br>wavelet analysis <br>Stochastic volatility <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 No homework <br>
+</td>
+<td style="text-align:center;">
+work on projects <br>
 </td>
 <td style="text-align:center;">
 </td>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-5 March
+2 Mar
 </td>
 <td style="text-align:center;">
 <br>
@@ -694,8 +799,7 @@ No homework <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -705,7 +809,7 @@ No homework <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-7 March
+4 Mar
 </td>
 <td style="text-align:center;">
 Eric <br>
@@ -719,18 +823,17 @@ Perturbation detection <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 No homework <br>
+</td>
+<td style="text-align:center;">
+work on projects <br>
 </td>
 <td style="text-align:center;">
 </td>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-12 March
+9 Mar
 </td>
 <td style="text-align:center;">
 <br>
@@ -744,8 +847,7 @@ No homework <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
+<br>
 </td>
 <td style="text-align:center;">
 <br>
@@ -755,7 +857,7 @@ No homework <br>
 </tr>
 <tr>
 <td style="text-align:center;width: 8em; ">
-14 March
+11 Mar
 </td>
 <td style="text-align:center;">
 <br>
@@ -769,17 +871,18 @@ Student presentations <br>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 No homework <br>
+</td>
+<td style="text-align:center;">
+work on projects <br>
 </td>
 <td style="text-align:center;">
 </td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 
 
 
@@ -790,7 +893,7 @@ No homework <br>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -798,6 +901,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

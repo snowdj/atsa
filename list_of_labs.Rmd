@@ -1,5 +1,5 @@
 ---
-title: "2019 List of Lectures"
+title: "2021 List of Labs"
 output: html_document
 ---
 
@@ -17,11 +17,11 @@ matrixlab <- list(
   topics = c("Matrices & matrix algebra","(review on your own)"),
   pdf = "Labs/Week 0 basic matrix/basic-matrix-math.pdf",
   rmd = "",
-  html = "",
+  html = "https://nwfsc-timeseries.github.io/atsa-labs/chap-basicmat.html",
   video = "",
-  youtube = "https://youtu.be/D2rqcbRtjCA",
+  youtube = "",
   data = "",
-  homework = "Listed at end of lab",
+  homework = "Optional (not part of grade): Listed at end of <a href='https://nwfsc-timeseries.github.io/atsa-labs/chap-basicmat.html'>Chapter 1</a> in the ATSA lab book.",
   key = "Labs/Week 0 basic matrix/basic-matrix-math-key.pdf",
   instructor = "",
   hw_topics = "Review of matrix math",
@@ -38,14 +38,14 @@ lmlab <- list(
   pdf = "",
   rmd = "",
   html = c("https://nwfsc-timeseries.github.io/atsa-labs/chap-mlr.html","https://nwfsc-timeseries.github.io/atsa-labs/chap-ts.html"),
-  video = "",
+  video = c("https://washington.zoom.us/rec/share/O_e7v3FiQEjaOJbaBKuxDnXr5QEL93M_0FyKUVOH9SM0QUfxPOhCWoBwykgJ_bRC.XBwGGqdt5oz_uEHb?startTime=1610059899000"),
   youtube = "",
   data = "",
-  homework = "Linear Reg: Prob 1, 2, 3, 4a, 4b, 5a, 6a, 7",
+  homework = "Optional (but important to understand course material): End of <a href='https://nwfsc-timeseries.github.io/atsa-labs/chap-mlr.html'>Chapter 2</a> in the ATSA lab book.",
   key = "Labs/Week 1/HW_1_Key.html",
   instructor = c("Eli/Mark"),
   hw_topics = c("linear regression in matrix form"),
-  hw_duedate = "Due 5pm next Tues; email to instructor(s) for lab"
+  hw_duedate = "Optional"
 )
 ```
 
@@ -54,16 +54,16 @@ forecastlab <- list(
   title = "Box-Jenkins Methods",
   topics = c("Simulating ARMA models", "Fitting ARIMA models", "Forecasting with ARIMA models","Box-Jenkins Methods"),
   pdf = "",
-  rmd = c("https://nwfsc-timeseries.github.io/atsa-labs/Rmds/intro-ts-funcs-lab.Rmd", "Labs/Week 2/ARMA Lab 2 Box Jenkins.Rmd"),
-  html = c("https://nwfsc-timeseries.github.io/atsa-labs/chap-ts-lab.html","Labs/Week 2/ARMA_Lab_2_Box_Jenkins.html"),
-  video = "",
+  rmd = "",
+  html = c("https://nwfsc-timeseries.github.io/atsa-labs/chap-tslab.html", "https://nwfsc-timeseries.github.io/atsa-labs/chap-boxjenkins-.html"),
+  video = "https://washington.zoom.us/rec/share/S-BerzaPqhGQp5Q4L3OA78ZLyIsdcd7hmknswl8sqEWjLrt0ldbhVZ-Q_ccsD7oe.Vps_LirtAGpxWItE",
   youtube = "",
   data = "",
-  homework = "Intro to ts: problems at end of lab<br>Fitting ARMA models: problems at end of lab; <br>Due 5pm Tues 1/22",
+  homework = "Intro to ts: problems at end of <a href='https://nwfsc-timeseries.github.io/atsa-labs/chap-tslab.html'>Chapter 4</a> in the ATSA lab book.<br>Fitting ARMA models: problems at end of <a href='https://nwfsc-timeseries.github.io/atsa-labs/chap-boxjenkins-.html'>Chapter 5</a> in the ATSA lab book.",
   key = c("Labs/Week 2/HW_2_ts_Key.html","Labs/Week 2/HW_2_box-jenkins_Key.html"),
   instructor = "Mark & Eli",
   hw_topics = c("ARIMA models"),
-  hw_duedate = "Due 5pm Tues 1/22; email to instructor(s) for lab"
+  hw_duedate = "Due next Thurs 11:59 PM PST; email to instructor(s) for lab"
 )
 ```
 
@@ -73,15 +73,15 @@ sslab1 <- list(
   topics = c("Simulating ARMA models", "Fitting arima models", "Fitting univariate state-space models"),
   pdf = "",
   rmd = "",
-  html = c("https://nwfsc-timeseries.github.io/atsa-labs/chap-ts-lab.html", "https://nwfsc-timeseries.github.io/atsa-labs/chap-univariate-state-space.html"),
+  html = "",
   youtube = "",
   video = "",
   data = "",
-  homework = "Intro to uniSS: problems at end of chapter; Due 5pm next Tues",
+  homework = "Intro to uniSS: problems at end of chapter; Due 11:49 pm next Thurs",
   key = "",
   instructor = "Eli",
   hw_topics = c("Univariate state-space models"),
-  hw_duedate = "Due 5pm next Tues; email to instructor(s) for lab"
+  hw_duedate = "Due next Thurs 11:59 PM PST; email to instructor(s) for lab"
 )
 ```
 
@@ -90,34 +90,17 @@ sslab2 <- list(
   title = "State-space models",
   topics = c("Fitting univariate and mulitvariate state-space models"),
   pdf = "",
-  rmd = c("https://nwfsc-timeseries.github.io/atsa-labs/Rmds/fitting-univariate-state-space.Rmd","https://nwfsc-timeseries.github.io/atsa-labs/Rmds/multivariate-ss.Rmd"),
-  html = c("https://nwfsc-timeseries.github.io/atsa-labs/chap-univariate-state-space.html","https://nwfsc-timeseries.github.io/atsa-labs/chap-mss.html"),
-  video = "https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff985d38-262d-403f-a781-a9df017e9207",
+  rmd = "",
+  html = c("https://nwfsc-timeseries.github.io/atsa-labs/chap-univariate-state-space.html", "https://nwfsc-timeseries.github.io/atsa-labs/chap-mss.html"),
+  video = "https://washington.zoom.us/rec/share/_EzxfSAEg40yJjDojbpQusfmqr0J_3xdWYsUSiC4P9fX2N3Bn1rBROi0Raw6TO8h.9tyoBEZqcX-alt1P",
   youtube = "",
   data = "",
-  homework = "Chap 5 Univariate SS: Problems 6 and 7; Chap 6 Multivariate SS: Problems 1,2,3,4,6 (skip 5); you can do Chap 5 problems just using Chap 6 information;<br>Due Thurs 1/31 midnight.",
-  key = c("Labs/Week 3/HW_3_uss_Key.html", "Labs/Week 3/HW_3_Key.html"),
+  homework = "HW #2 questions and data: [Rmd](https://nwfsc-timeseries.github.io/atsa/Labs/Week 3/NO2Lab/HW2-NO2.Rmd), [html](https://nwfsc-timeseries.github.io/atsa/Labs/Week 3/NO2Lab/HW2-NO2.html), [data](https://nwfsc-timeseries.github.io/atsa/Labs/Week 3/NO2Lab/ECNNO2.RData),
+  [Tips](https://nwfsc-timeseries.github.io/atsa/Labs/Week 3/NO2Lab/HW2-Tips.html)",
+  key = c("Labs/Week 3/NO2Lab/HW2-NO2-Key.html"),
   instructor = "Eli",
   hw_topics = c("State-space models"),
-  hw_duedate = "Due midnight THURS 1/31; email to instructor(s) for lab"
-)
-```
-
-```{r}
-dlmlab <- list(
-  title = "Dynamic Linear Models",
-  topics = c("Fitting DLMs"),
-  pdf = "",
-  rmd = "https://nwfsc-timeseries.github.io/atsa-labs/Rmds/DLM.Rmd",
-  html = "https://nwfsc-timeseries.github.io/atsa-labs/chap-dlm-dynamic-linear-models.html",
-  video = "",
-  youtube = "",
-  data = "",
-  homework = "Problems end of lab; due midnight next Thurs 2/14",
-  key = "Labs/Week 5/HW_5_answer_key.pdf",
-  instructor = "Mark",
-  hw_topics = c("Dynamic Linear Models"),
-  hw_duedate = "Due midnight next Thurs 2/14; email to instructor(s) for lab"
+  hw_duedate = "Due Sat Jan 30 11:59 PM PST; email to Eli"
 )
 ```
 
@@ -126,16 +109,35 @@ dfalab <- list(
   title = "DFA models",
   topics = c("Fitting DFA models"),
   pdf = "",
-  rmd = "https://nwfsc-timeseries.github.io/atsa-labs/Rmds/intro-to-dfa.Rmd",
-  html = "https://nwfsc-timeseries.github.io/atsa-labs/sec-dfa.html",
-  video = "",
+  rmd = "",
+  html = "Labs/Week 4/intro-to-dfa.html",
+  video = "https://washington.zoom.us/rec/share/qD31qnwHquZsbIlaGKgQjT8fxldG6VojtCBUNFLe0TY-2basVH8_vlgYyUITmoR6._HawijuNOGHQ0W7I",
   youtube = "",
   data = "",
-  homework = "Problems at end of lab<br>Due Thurs 2/7 midnight.",
-  key = "Labs/Week 4/HW_4_answer_key.pdf",
+  homework = "HW #3 Problems at end of Chap 10 of Lab Book",
+  key = "",
   instructor = "Mark",
   hw_topics = c("Dynamic Factor Analysis"),
-  hw_duedate = "Due midnight next Thurs 2/7; email to Mark"
+  hw_duedate = "Due next Thurs 11:59 PM PST; email to Mark"
+)
+```
+
+```{r}
+dlmlab <- list(
+  title = "Dynamic Linear Models",
+  topics = c("Fitting DLMs"),
+  pdf = "",
+  rmd = "Labs/Week 5/intro-to-dlms.Rmd",
+  html = "Labs/Week 5/intro-to-dlms.html",
+  video = "https://washington.zoom.us/rec/share/qMA7A0uw1eD6FJYL2wIsLEz5SDtipNgK5Qjw_bUEVSfcNh5IncOqFDF-x4AzGOte.U93oJTp68fzUkKLE",
+  youtube = "",
+  data = "",
+  homework = "HW #4 Problems at end of Chap 9 in lab book",
+  key = "",
+  #key = "Labs/Week 5/HW_5_answer_key.pdf",
+  instructor = "Mark",
+  hw_topics = c("Dynamic Linear Models"),
+  hw_duedate = "Due next Thurs 11:59 PM PST; email to instructor(s) for lab"
 )
 ```
 
@@ -143,36 +145,35 @@ dfalab <- list(
 etsedmlab <- list(
   title = "Forecasting with ETS models",
   topics = c("Forecasting with ETS models, Model comparison, Covariates in MARSS models"),
-  pdf = "Labs/Week 6/multivariate-ss-with-cov.pdf",
+  pdf = "",
   rmd = "",
   html = c("https://nwfsc-timeseries.github.io/atsa-labs/chap-msscov.html", "https://fish-forecast.github.io/Fish-Forecast-Webpage/Exp_Smoothing.html"),
   video = "",
   youtube = "",
   data = "",
-  homework = "Problems 1-5 in the Covariates Chapter (html 1)",
-  key = "Labs/Week 6/multivariate-ss-with-cov-hw-key.html",
+  homework = "TBD",
+  key = "",
   instructor = c("Eli"),
   hw_topics = c("Covariates in MARSS models"),
-  hw_duedate = "Due 5pm next Thurs 2/28; email to instructor(s) for lab"
+  hw_duedate = "Due next Thurs 11:59 PM PST; email to instructor(s) for lab"
 )
 ```
 
-```{r}
+```{r bayeslab}
 bayeslab <- list(
   title = "Fitting models with STAN",
-  topics = c("Bayesian estimation",
-              "STAN"),
+  topics = c("Bayesian estimation", "STAN"),
   pdf = "",
-  rmd = "",
+  rmd = "https://nwfsc-timeseries.github.io/atsa-labs/Rmds/fitting-models-with-stan.Rmd",
   html = "https://nwfsc-timeseries.github.io/atsa-labs/chap-stan.html",
-  video = "",
+  video = "https://washington.zoom.us/rec/share/N49yDRIBvXImVvX8Hqm5QgM9gAt09Hkj41S-SKK8hfeSgwL0lgIKzdPvVFvn_Uff._edvMfOCxC8NorrV",
   youtube = "",
   data = "",
-  homework = "No homework",
+  homework = "HW # 5. Project Methods",
   key = "",
   instructor = "Eric",
-  hw_topics = c("No homework"),
-  hw_duedate = "work on projects"
+  hw_topics = c(""),
+  hw_duedate = "Due next Thurs 11:59 PM PST; email to all instructors"
 )
 ```
 
@@ -270,7 +271,7 @@ freqdomainlab <- list(
 ```
 
 
-```{r}
+```{r studentpresentation2}
 presentlab <- list(
   title = "Student presentations",
   topics = c("Student presentations"),

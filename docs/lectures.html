@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
 <title>Lecture presentations</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -22,8 +23,20 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon16x16.ico" type="image/x-icon">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -71,9 +84,8 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
+
 
 <style type = "text/css">
 .main-container {
@@ -87,13 +99,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -109,7 +126,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -129,6 +145,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -150,19 +203,74 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -181,13 +289,13 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
     
   </a>
 </li>
 <li>
-  <a href="asyllabus.html">Syllabus</a>
+  <a href="asyllabus.html">Schedule</a>
 </li>
 <li>
   <a href="lectures.html">Lectures</a>
@@ -209,12 +317,18 @@ $(document).ready(function () {
       <a href="final_proj.html">Project details</a>
     </li>
     <li>
+      <a href="review_guide.html">Peer review details</a>
+    </li>
+    <li>
       <a href="student_pubs.html">Former projects</a>
     </li>
   </ul>
 </li>
 <li>
   <a href="references.html">References</a>
+</li>
+<li>
+  <a href="https://github.com/nwfsc-timeseries/safs-timeseries/issues">Post questions</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -233,479 +347,425 @@ $(document).ready(function () {
 </div>
 
 
-<!-- first is PDF, 2nd PPT, 3rd Rmd -->
+<p><br></p>
+<div id="meeting-days-times" class="section level3">
+<h3>Meeting days &amp; times</h3>
+<p>Tuesday &amp; Thursday from 1:30-2:50 via <a href="https://washington.zoom.us/j/93874357621">Zoom</a></p>
+<!-- 1st is pdf, 2nd html, 3rd Rmd -->
+<div style="border: 1px solid #ddd; padding: 0px; border-style: none;overflow-y: scroll; height:700px; ">
 <table class="table table-striped" style="width: auto !important; ">
 <caption>
 </caption>
 <thead>
 <tr>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Date
 </th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Instructor
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 Lecture topics
 </th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Slides
 </th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Video of Lecture
 </th>
-<th style="text-align:center;">
-Slides with Audio
-</th>
-<th style="text-align:center;">
+<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;">
 Reading
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center;width: 8em; ">
-8 January
+<td style="text-align:center;width: 4em; ">
+5 Jan
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Mark <br>
 </td>
 <td style="text-align:left;">
 Course overview <br>Properties of time series <br>Data transformations <br>Time series decomposition <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%201/lec_00_class_overview.Rmd">Rmd 1</a> <a href="Lectures/Week%201/lec_01_intro_to_ts.Rmd">Rmd 2</a><br><a href="Lectures/Week%201/lec_00_class_overview.pdf">pdf 1</a> <a href="Lectures/Week%201/lec_01_intro_to_ts.pdf">pdf 2</a><br><a href="Lectures/Week%201/lec_00_class_overview.html">html 1</a> <a href="Lectures/Week%201/lec_01_intro_to_ts.html">html 2</a>
+<td style="text-align:center;">
+<a href="Lectures/Week%201/lec_00_class_overview.pdf">pdf 1</a> <a href="Lectures/Week%201/lec_01_intro_to_ts.pdf">pdf 2</a><br><a href="Lectures/Week%201/lec_00_class_overview.html">html 1</a> <a href="Lectures/Week%201/lec_01_intro_to_ts.html">html 2</a><br><a href="Lectures/Week%201/lec_00_class_overview.Rmd">Rmd 1</a> <a href="Lectures/Week%201/lec_01_intro_to_ts.Rmd">Rmd 2</a>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=bf227aa2-7185-4cc3-8c11-a9cf0163693f">Panapto</a><br><a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1f328019-716a-4a80-bab7-a9cf0169d570">Panapto</a>
+<a href="https://washington.zoom.us/rec/play/AKLCPTIA9y4vOAy0l3UUEaq9bc_aqkZ9Y5MBu9WVMHmRB5VBvRh9SLODhN-EnWumqAts4pDyFuuYgBTt.Sqz8HYpKVbOB34jw">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/-LlF6nyvz9E">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-88698-5_1.pdf">CM09: Chap 1</a> <br><a href="https://otexts.org/fpp2/decomposition.html">HA18: Chap 6</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-ts.html">HSW18: Intro to ts</a> <br>
+<a href="Files/Introductory_Time_Series_With_R.pdf">CM09: Chap 1</a> <br><a href="https://otexts.org/fpp2/decomposition.html">HA18: Chap 6</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-ts.html">HSW18: Intro to ts</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-10 January
+<td style="text-align:center;width: 4em; ">
+7 Jan
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Mark <br>
 </td>
 <td style="text-align:left;">
 Covariance &amp; correlation <br>Autocorrelation &amp; Partial autocorrelation <br>Cross correlation <br>White noise <br>Random walks <br>Differencing <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%201/lec_02_covariance_stationarity.Rmd">Rmd 1</a><br><a href="Lectures/Week%201/lec_02_covariance_stationarity.pdf">pdf 1</a><br><a href="Lectures/Week%201/lec_02_covariance_stationarity.html">html 1</a>
+<td style="text-align:center;">
+<a href="Lectures/Week%201/lec_02_covariance_stationarity.pdf">pdf 1</a><br><a href="Lectures/Week%201/lec_02_covariance_stationarity.html">html 1</a><br><a href="Lectures/Week%201/lec_02_covariance_stationarity.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=41c00b6a-60f7-4ed2-83a5-a9d10163cb68">Panapto</a>
+<a href="https://washington.zoom.us/rec/share/JnqLezsMniZJt_JX920osslsQsVLmpkpWj9JQLL9zT66wQ2_xEt5LI1zYnb6bnhS.ZZRdNDz2TAerVhwQ?startTime=1610055031000">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/BeG-e4CKJHs">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-88698-5_2.pdf">CM09: Chap 2</a> <br><a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-88698-5_4.pdf">CM09: Chap 4</a> <br><a href="https://otexts.org/fpp2/stationarity.html">HA18: Chap 8.1</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-ts.html">HSW18: Intro to ts</a> <br>
+<a href="Files/Introductory_Time_Series_With_R.pdf">CM09: Chap 2</a> <br><a href="Files/Introductory_Time_Series_With_R.pdf">CM09: Chap 4</a> <br><a href="https://otexts.org/fpp2/stationarity.html">HA18: Chap 8.1</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-ts.html">HSW18: Intro to ts</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-15 January
+<td style="text-align:center;width: 4em; ">
+12 Jan
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Mark <br>
 </td>
 <td style="text-align:left;">
 Autoregressive (AR) models <br>Moving average (MA) models <br>Stationary AR models <br>Invertible MA models <br>Using ACF &amp; PACF for model ID <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%202/lec_03_ARMA_models.Rmd">Rmd 1</a><br><a href="Lectures/Week%202/lec_03_ARMA_models.pdf">pdf 1</a><br><a href="Lectures/Week%202/lec_03_ARMA_models.html">html 1</a>
+<td style="text-align:center;">
+<a href="Lectures/Week%202/lec_03_ARMA_models.pdf">pdf 1</a><br><a href="Lectures/Week%202/lec_03_ARMA_models.html">html 1</a><br><a href="Lectures/Week%202/lec_03_ARMA_models.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=76599211-5ab7-4eff-9215-a9d601631dc6">Panapto</a>
+<a href="https://washington.zoom.us/rec/share/7DXWT5yrdi6pXviJwZknnxBaVJVxmGlW7okluJDR1suPR8jBYorgtWHKBqi0PTP6.kjawaXHBwCEZO2pz">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/o31x36miSL0">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-88698-5_6.pdf">CM09: Chap 6</a> <br><a href="https://link.springer.com/content/pdf/10.1007%2F978-0-387-88698-5_7.pdf">CM09: Chap 7</a> <br><a href="https://otexts.org/fpp2/arima.html">HA18: Chap 8.1-8.5</a> <br>
+<a href="Files/Introductory_Time_Series_With_R.pdf">CM09: Chap 6</a> <br><a href="Files/Introductory_Time_Series_With_R.pdf">CM09: Chap 7</a> <br><a href="https://otexts.org/fpp2/arima.html">HA18: Chap 8.1-8.5</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-17 January
+<td style="text-align:center;width: 4em; ">
+14 Jan
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eli <br>
 </td>
 <td style="text-align:left;">
 Box-Jenkins method <br>Fitting ARIMA models with R <br>Forecasting with ARIMA models <br>Seasonal ARIMA models <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%202/lec_04_Fitting_and_Selecting_ARMA_models.Rmd">Rmd 1</a><br><a href="Lectures/Week%202/lec_04_Fitting_and_Selecting_ARMA_models.pdf">pdf 1</a><br><a href="Lectures/Week%202/lec_04_Fitting_and_Selecting_ARMA_models.html">html 1</a>
+<td style="text-align:center;">
+<a href="Lectures/Week%202/lec_04_Fitting_and_Selecting_ARMA_models.pdf">pdf 1</a> <a href="Lectures/Week%202/lec_04_Forecasting_ARIMA.pdf">pdf 2</a> <a href="Lectures/Week%202/lec_04_Arima_intercepts.pdf">pdf 3</a><br><a href="Lectures/Week%202/lec_04_Fitting_and_Selecting_ARMA_models.html">html 1</a> <a href="Lectures/Week%202/lec_04_Forecasting_ARIMA.html">html 2</a> <a href="Lectures/Week%202/lec_04_Arima_intercepts.html">html 3</a><br><a href="Lectures/Week%202/lec_04_Fitting_and_Selecting_ARMA_models.Rmd">Rmd 1</a> <a href="Lectures/Week%202/lec_04_Forecasting_ARIMA.Rmd">Rmd 2</a> <a href="Lectures/Week%202/lec_04_Arima_intercepts.Rmd">Rmd 3</a>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=208eca91-52a3-42c4-b21f-a9d801636039">Panapto</a>
-</td>
-<td style="text-align:center;">
-<a href="https://youtu.be/RLxYULPA2Dc">YouTube</a>
+<a href="https://washington.zoom.us/rec/share/BeDigUp4e6l9Jb3hl4RHjobFCsc445M8yGTzsV72mDFHXA7WsoC17fF8C-hNjZpH.uUnAD3e8oJTzl369">Video</a>
 </td>
 <td style="text-align:center;">
 <a href="https://otexts.org/fpp2/arima.html">HA18: Chap 8.6-8.9</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/3-arima-models.html">H18: ARIMA Models</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-22 January
+<td style="text-align:center;width: 4em; ">
+19 Jan
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eli <br>
 </td>
 <td style="text-align:left;">
-Univariate state-space models <br>Diagnostics for state-space models <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%203/lec_05_univariate_state_space.Rmd">Rmd 1</a><br><a href="Lectures/Week%203/lec_05_uni_state_space.pdf">pdf 1</a><br>
+Seasonal ARIMA models <br>Univariate state-space models <br>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b046674e-45bd-4ef5-8bf9-a9df0029c285">Panapto</a>
+<br><a href="Lectures/Week%203/lec_05_box_jenkins_part2.html">html 1</a> <a href="Lectures/Week%203/lec_05_univariate_state_space.html">html 2</a><br><a href="Lectures/Week%203/lec_05_box_jenkins_part2.Rmd">Rmd 1</a> <a href="Lectures/Week%203/lec_05_univariate_state_space.Rmd">Rmd 2</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/K_JLlXDLqII">YouTube</a>
+<a href="https://washington.zoom.us/rec/share/x01GlPclIpkCoCalNUe7Q2WpWPis5L4UDf1kRlajFZcmZzdtqdI9QmOkxGMbVmda.UwWW5X-HK4FHjPni">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 7</a> <br><a href="Lectures/Week%203/MARSS_function.html">MARSS function</a> <br><a href="Lectures/Week%203/MARSS_Reference_Sheet.pdf">MARSS Ref Sheet</a> <br><a href="Lectures/Week%203/univariate_example_1.R">uni_example_1.R</a> <br><a href="Lectures/Week%203/univariate_example_2.R">uni_example_2.R</a> <br><a href="Lectures/Week%203/univariate_example_3.R">uni_example_3.R</a> <br><a href="Lectures/Week%203/univariate_example_4.R">uni_example_4.R</a> <br><a href="Lectures/Week%203/univariate_example_lm.R">uni_example_lm.R</a> <br><a href="Lectures/Week%203/univariate_example_arima.R">uni_example_arima.R</a> <br>
+<a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 7</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-univariate-state-space.html">HWSb: Chap 6</a> <br><a href="Lectures/Week%203/MARSS_function.html">MARSS function</a> <br><a href="Lectures/Week%203/MARSS_Reference_Sheet.pdf">MARSS Ref Sheet</a> <br><a href="Lectures/Week%203/univariate_example_1.R">uni_example_1.R</a> <br><a href="Lectures/Week%203/univariate_example_2.R">uni_example_2.R</a> <br><a href="Lectures/Week%203/univariate_example_3.R">uni_example_3.R</a> <br><a href="Lectures/Week%203/univariate_example_4.R">uni_example_4.R</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-24 January
+<td style="text-align:center;width: 4em; ">
+21 Jan
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eli <br>
 </td>
 <td style="text-align:left;">
 Introduction to multivariate state-space models <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%203/lec_06_box_jenkins_redux.Rmd">Rmd 1</a><br><a href="Lectures/Week%203/lec_06_marss.pdf">pdf 1</a><br><a href="Lectures/Week%203/lec_06_box_jenkins_redux.html">html 1</a>
+<td style="text-align:center;">
+<a href="Lectures/Week%203/lec_05b_univariate_state_space_part2.pdf">pdf 1</a> <a href="Lectures/Week%203/lec_06_marss.pdf">pdf 2</a><br><a href="Lectures/Week%203/lec_05b_univariate_state_space_part2.html">html 1</a><br><a href="Lectures/Week%203/lec_05b_univariate_state_space_part2.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e4ad0958-c830-447c-a1bd-a9df016331cb">Panapto</a>
+<a href="https://washington.zoom.us/rec/share/_EzxfSAEg40yJjDojbpQusfmqr0J_3xdWYsUSiC4P9fX2N3Bn1rBROi0Raw6TO8h.9tyoBEZqcX-alt1P">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/kBYfTJbBwCs">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 8</a> <br><a href="Lectures/Week%203/MARSS_function.html">MARSS function</a> <br><a href="Lectures/Week%203/MARSS_Reference_Sheet.pdf">MARSS Ref Sheet</a> <br><a href="Lectures/Week%203/marss_example_1.R">marss_example_1.R</a> <br><a href="Lectures/Week%203/marss_example_2.R">marss_example_2.R</a> <br><a href="Lectures/Week%203/marss_example_3.R">marss_example_3.R</a> <br><a href="Lectures/Week%203/marss_example_4.R">marss_example_4.R</a> <br><a href="Lectures/Week%203/marss_example_5.R">marss_example_5.R</a> <br>
+<a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 8</a> <br><a href="Lectures/Week%203/MARSS_function.html">MARSS function</a> <br><a href="Lectures/Week%203/MARSS_Reference_Sheet.pdf">MARSS Ref Sheet</a> <br><a href="Lectures/Week%203/univariate_example_0.R">uni_example_0.R</a> <br><a href="Lectures/Week%203/marss_example_0.R">marss_example_0.R</a> <br><a href="Lectures/Week%203/marss_example_0_with_comments.R">marss_example_0_with_comments.R</a> <br><a href="Lectures/Week%203/marss_example_1.R">marss_example_1.R</a> <br><a href="Lectures/Week%203/marss_example_2.R">marss_example_2.R</a> <br><a href="Lectures/Week%203/marss_example_3.R">marss_example_3.R</a> <br><a href="Lectures/Week%203/marss_example_4.R">marss_example_4.R</a> <br><a href="Lectures/Week%203/marss_example_5.R">marss_example_5.R</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-29 January
+<td style="text-align:center;width: 4em; ">
+26 Jan
+</td>
+<td style="text-align:center;width: 4em; ">
+Eli <br>
+</td>
+<td style="text-align:left;">
+MARSSX and ARMAX models <br>Seasonal effects <br>Missing covariates <br>
 </td>
 <td style="text-align:center;">
+<a href="Lectures/Week%204/lec_07_covariates.pdf">pdf 1</a><br><a href="Lectures/Week%204/lec_07_covariates.html">html 1</a><br><a href="Lectures/Week%204/lec_07_covariates.Rmd">Rmd 1</a>
+</td>
+<td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/WGy5VRovHvXoxx8Gv9FREu_GBqszSDGo_ha1W1pIYjR7XK1csHGjkHvIv5_4wCkS.vpW-yoEa-VgQpcmZ">Video</a>
+</td>
+<td style="text-align:center;">
+<a href="Lectures/Week%204/lec_07_covariates.R">lec_07_covariates.R</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-msscov.html">MARSS Models HWS18a: Chap 8</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-mssmiss.html">Missing Covariates HWS18a: Chap 11</a> <br><a href="https://otexts.com/fpp2/regression.html">HA18: Chap 5</a> <br><a href="https://otexts.com/fpp2/dynamic.html">HA18: Chap 9</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/6-1-multivariate-linear-regression.html">H18: Chap 6</a> <br>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4em; ">
+28 Jan
+</td>
+<td style="text-align:center;width: 4em; ">
+Mark <br>
+</td>
+<td style="text-align:left;">
+Regression with autocorrelated errors <br>Dynamic factor analysis (DFA) <br>
+</td>
+<td style="text-align:center;">
+<a href="Lectures/Week%204/lec_08_intro_to_DFA.pdf">pdf 1</a><br><a href="Lectures/Week%204/lec_08_intro_to_DFA.html">html 1</a><br><a href="Lectures/Week%204/lec_08_intro_to_DFA.Rmd">Rmd 1</a>
+</td>
+<td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/qD31qnwHquZsbIlaGKgQjT8fxldG6VojtCBUNFLe0TY-2basVH8_vlgYyUITmoR6._HawijuNOGHQ0W7I">Video</a>
+</td>
+<td style="text-align:center;">
+<a href="http://www.nrcresearchpress.com/doi/abs/10.1139/f03-030#.XFyd_xJ7l9M">Zuur et al. 2003a</a> <br><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/env.611">Zuur et al. 2003b</a> <br><a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecs2.1333">Ohlberger et al. 2016</a> <br><a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 10</a> <br>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4em; ">
+2 Feb
+</td>
+<td style="text-align:center;width: 4em; ">
+Mark <br>
+</td>
+<td style="text-align:left;">
+Dynamic linear models (DLMs) <br>
+</td>
+<td style="text-align:center;">
+<a href="Lectures/Week%205/lec_09_intro_to_DLMs.pdf">pdf 1</a><br><a href="Lectures/Week%205/lec_09_intro_to_DLMs.html">html 1</a><br><a href="Lectures/Week%205/lec_09_intro_to_DLMs.Rmd">Rmd 1</a>
+</td>
+<td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/7YVTi6WO_egI7eH6cy7bo5eKJ0t2h9FVGZcW1TGnVw7JTYVpOw7gNgzRQRma.LiQf8tzgZMH-_R7f">Video</a>
+</td>
+<td style="text-align:center;">
+Petris et al. (2009) <br><a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 16</a> <br>Scheuerell &amp; Williams (2005) <br>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4em; ">
+4 Feb
+</td>
+<td style="text-align:center;width: 4em; ">
 Eric <br>
 </td>
 <td style="text-align:left;">
-Multi-model inference and selection <br>Information criteria <br>Cross-validation &amp; LOOIC <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%204/lec_7_modelselection.Rmd">Rmd 1</a> <a href="Lectures/Week%204/lec_07_covariates_in_marss_brief.Rmd">Rmd 2</a><br><br><a href="Lectures/Week%204/lec_7_modelselection.html">html 1</a> <a href="Lectures/Week%204/lec_07_covariates_in_marss_brief.html">html 2</a>
+Hidden Markov models <br>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=142060d0-6f7b-4108-a80f-a9e40166b34d">Panapto</a>
+<a href="Lectures/Week%205/lec_10_hmm.pdf">pdf 1</a><br><a href="Lectures/Week%205/lec_10_hmm.html">html 1</a><br><a href="Lectures/Week%205/lec_10_hmm.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/hF4aoFBZoCU">YouTube</a>
+<a href="https://washington.zoom.us/rec/play/b_oZunMhqfYSYwccynu0z31YqS9MbzyIdH7BGQMRyQTGazhJhHr73Exa9InofHq1BgGbmel4iCUgHvuR.8QqLdLKjIQKlEeq0?autoplay=true&amp;continueMode=true&amp;startTime=1612474828000">Video</a>
 </td>
 <td style="text-align:center;">
-See list of references in the lecture <br><a href="https://otexts.com/fpp2/accuracy.html">HA18: Section 3.4</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/5-perf-testing.html">H18: Forecast accuracy</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/6-1-multivariate-linear-regression.html">H18: Variable selection</a> <br>
+<a href="https://www.researchgate.net/profile/Jan_Bulla/publication/256503512_Hidden_Markov_Models/links/0c9605232dce693fa3000000/Hidden-Markov-Models.pdf">Zucchini et al. 2006</a> <br><a href="https://cran.r-project.org/web/packages/depmixS4/vignettes/depmixS4.pdf">depmixS4 vignette</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-31 January
+<td style="text-align:center;width: 4em; ">
+9 Feb
 </td>
-<td style="text-align:center;">
-Mark <br>
-</td>
-<td style="text-align:left;">
-Dynamic factor analysis (DFA) <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%204/lec_08_intro_to_DFA.Rmd">Rmd 1</a><br><a href="Lectures/Week%204/lec_08_intro_to_DFA.pdf">pdf 1</a><br><a href="Lectures/Week%204/lec_08_intro_to_DFA.html">html 1</a>
-</td>
-<td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=065aa722-ccb6-4ad5-b047-a9e601631f98">Panapto</a>
-</td>
-<td style="text-align:center;">
-<a href="https://youtu.be/FMLh8c_Sa8s">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="http://www.nrcresearchpress.com/doi/abs/10.1139/f03-030#.XFyd_xJ7l9M">Zuur et al. 2003a</a> <br><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/env.611">Zuur et al. 2003b</a> <br><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0162121">Goertler et al. 2016</a> <br><a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecs2.1333">Ohlberger et al. 2016</a> <br><a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 10</a> <br>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 8em; ">
-5 February
-</td>
-<td style="text-align:center;">
-Mark <br>
-</td>
-<td style="text-align:left;">
-Regression with autocorrelated errors <br>Dynamic linear models (DLMs) <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%205/lec_09_intro_to_DLMs.Rmd">Rmd 1</a><br><a href="Lectures/Week%205/lec_09_intro_to_DLMs.pdf">pdf 1</a><br><a href="Lectures/Week%205/lec_09_intro_to_DLMs.html">html 1</a>
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-<a href="https://youtu.be/UphDr8v1uc8">YouTube</a>
-</td>
-<td style="text-align:center;">
-Petris et al. (2009) <br><a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 16</a> <br>Scheuerell &amp; Williams (2005) <br>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 8em; ">
-7 February
-</td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eric <br>
 </td>
 <td style="text-align:left;">
 Bayesian estimation of time-series and state-space models <br>Stan <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%205/lec_10_bayes.Rmd">Rmd 1</a><br><a href="Lectures/Week%205/lec_10_bayes.pdf">pdf 1</a><br><a href="Lectures/Week%205/lec_10_bayes.html">html 1</a>
+<td style="text-align:center;">
+<a href="Lectures/Week%206/lec_11_bayes.pdf">pdf 1</a><br><a href="Lectures/Week%206/lec_11_bayes.html">html 1</a><br><a href="Lectures/Week%206/lec_11_bayes.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=71749dcf-20da-4c86-90bf-a9ed017e1e14">Panapto</a>
+<a href="https://washington.zoom.us/rec/share/_-57I0Rr8NdtUboU9RG_54MgKXAQuskB6m8NZmFHIK630O9RsgV9KioimyGj5hOd.2yB_dFMGP1X09do8">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/EzmfcyL0n2I">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="https://mc-stan.org/users/documentation/">Stan manual</a> <br><a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12681">Monnahan et al. 2017</a> <br>
+<a href="https://mc-stan.org/users/documentation/">Stan manual</a> <br><a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12681">Monnahan et al. 2017</a> <br><a href="https://livefreeordichotomize.com/2017/10/14/mcmc-and-the-case-of-the-spilled-seeds/">mcmc intro</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-12 February
+<td style="text-align:center;width: 4em; ">
+11 Feb
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eric <br>
 </td>
 <td style="text-align:left;">
-Writing our own Bayesian models in Stan <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%206/lec_11_stan.Rmd">Rmd 1</a><br><a href="Lectures/Week%206/lec_11_stan.pdf">pdf 1</a><br><a href="Lectures/Week%206/lec_11_stan.html">html 1</a>
+MAP estimation <br>Multivariate models <br>DFA <br>Writing our own Bayesian models in Stan <br>
 </td>
 <td style="text-align:center;">
+<a href="Lectures/Week%206/lec_12_bayes2.pdf">pdf 1</a><br><a href="Lectures/Week%206/lec_12_bayes2.html">html 1</a><br><a href="Lectures/Week%206/lec_12_bayes2.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
+<a href="https://washington.zoom.us/rec/share/9pMPeZer8xuWiK7TAHeHvIfMdwLlhk-vj-TDEXPpbAcxHnBfOed72DpPi5faieGs.FxNfnqDsfVEd9DHc">Video</a>
 </td>
 <td style="text-align:center;">
 <a href="https://mc-stan.org/users/documentation/">Stan manual</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-14 February
+<td style="text-align:center;width: 4em; ">
+16 Feb
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eric <br>
 </td>
 <td style="text-align:left;">
-Hidden Markov models <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%206/lec_12_hmm.Rmd">Rmd 1</a><br><a href="Lectures/Week%206/lec_12_hmm.pdf">pdf 1</a><br><a href="Lectures/Week%206/lec_12_hmm.html">html 1</a>
+Multi-model inference and selection <br>Information criteria <br>Cross-validation &amp; LOOIC <br>
 </td>
 <td style="text-align:center;">
+<a href="Lectures/Week%207/lec_13_modelselection.pdf">pdf 1</a><br><a href="Lectures/Week%207/lec_13_modelselection.html">html 1</a><br><a href="Lectures/Week%207/lec_13_modelselection.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/MHJFNeK-rug">YouTube</a>
+<a href="https://washington.zoom.us/rec/play/zfZiW5ojU0qYgxmAecEzEfkQk6oRy96wFP0v0hMPUh-1nUnm7fT97zumEDWj1eJQCiafFC41hfn9f_08.fhVBaxZzqT99HzmX?continueMode=true">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://www.researchgate.net/profile/Jan_Bulla/publication/256503512_Hidden_Markov_Models/links/0c9605232dce693fa3000000/Hidden-Markov-Models.pdf">Zucchini et al. 2006</a> <br><a href="https://cran.r-project.org/web/packages/depmixS4/vignettes/depmixS4.pdf">depmixS4 vignette</a> <br>
+See list of references in the lecture <br><a href="https://otexts.com/fpp2/accuracy.html">HA18: Section 3.4</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/5-perf-testing.html">H18: Forecast accuracy</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/6-1-multivariate-linear-regression.html">H18: Variable selection</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-19 February
+<td style="text-align:center;width: 4em; ">
+18 Feb
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eli <br>
 </td>
 <td style="text-align:left;">
-Exponential smoothing models <br>crossvalidation tests <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%207/ETS.Rmd">Rmd 1</a><br><br><a href="Lectures/Week%207/ETS.html">html 1</a>
+AR(p) Models <br>Estimating interaction strengths <br>Gompertz models <br>Stability metrics <br>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=bddd18a2-d980-4d88-aa9c-a9fa00024e17">Panapto</a>
+<br><a href="Lectures/Week%209/Old%20interactions%20lectures/Lec_16/Lec_16.html">html 1</a><br><a href="Lectures/Week%209/Old%20interactions%20lectures/Lec_16/Lec_16.Rmd">Rmd 1</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/afqU8uWkY3g">YouTube</a>
+<a href="https://washington.zoom.us/rec/share/mVed0HQfWxXTpUVFCfBSMZfAYpbibSe0LMUZYPUTPwY4pC5_NpWKn5IGTUe9bSz4.Drn0yA6_pMok7T3q">Video</a>
 </td>
 <td style="text-align:center;">
-<a href="https://otexts.com/fpp2/expsmooth.html">HA18: Chap 7</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/4-exponential-smoothing-models.html">H18: Chap 4</a> <br>
+<a href="https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1890/13-0996.1">Hampton et al 2013</a> <br><a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9615%282003%29073%5B0301%3AECSAEI%5D2.0.CO%3B2">Ives et al 2003</a> <br><a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 14 &amp; 18</a> <br><a href="https://github.com/mdscheuerell/marstab/blob/master/mar_stab_properties_text.pdf">MAR Stability Metrics</a> <br><a href="https://nwfsc-timeseries.github.io/atsa-labs/chap-noisy-sensors-.html">AR(1) errors</a> <br><a href="https://github.com/mdscheuerell/mar_sims/blob/master/presentation/open_sci_summit_2020.pdf">Mark’s B estimation talk</a> <br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-21 February
+<td style="text-align:center;width: 4em; ">
+23 Feb
 </td>
-<td style="text-align:center;">
-Eli <br>
-</td>
-<td style="text-align:left;">
-Including covariates (predictors) in models <br>Seasonal effects <br>Missing covariates <br>Colinearity <br>MARSSX and ARMAX <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%207/ETS_revisted.Rmd">Rmd 1</a> <a href="Lectures/Week%207/Covariates.Rmd">Rmd 2</a><br><a href="Lectures/Week%207/CovariatesMARSS.pdf">pdf 1</a><br><a href="Lectures/Week%207/ETS_revisted.html">html 1</a> <a href="Lectures/Week%207/Covariates.html">html 2</a>
-</td>
-<td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1b55bcd8-5eb6-4909-b71b-a9fb01633327">Panapto</a>
-</td>
-<td style="text-align:center;">
-<a href="https://youtu.be/ANaAjUKvoiw">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="https://otexts.com/fpp2/regression.html">HA18: Chap 5</a> <br><a href="https://otexts.com/fpp2/dynamic.html">HA18: Chap 9</a> <br><a href="https://fish-forecast.github.io/Fish-Forecast-Bookdown/6-1-multivariate-linear-regression.html">H18: Chap 6</a> <br>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 8em; ">
-26 February
-</td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eric <br>
 </td>
 <td style="text-align:left;">
 Semi- and non-parametric models <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%208/lec_15_semiparametric.Rmd">Rmd 1</a><br><a href="Lectures/Week%208/lec_15_semiparametric.pdf">pdf 1</a><br><a href="Lectures/Week%208/lec_15_semiparametric.html">html 1</a>
-</td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=68db3c98-26ff-4d0b-91c0-aa000176a940">Panapto</a>
+<br><br>
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-<a href="https://link.springer.com/epdf/10.1007/s11284-017-1469-9?shared_access_token=uo6dSpx2HhqFSdKklUb91ve4RwlQNchNByi7wbcMAY46qf1ru5YtibpRTA9bGJJXdv8wOCFEurjER4XMpGuPd-QPKglrjNFUFLLw1xY5KfAWa2Ln-vHCv747UBEe-04n2oRgCUyZ0dONF9fk2aRo8j07QNwfnwGIhi71df0wnXA%3D">Chang et al. 2017</a> <br><a href="https://www.nature.com/articles/344734a0">Sugihara and May</a> <br><a href="https://cran.r-project.org/web/packages/rEDM/vignettes/rEDM-tutorial.html">rEDM Vignette</a> <br><a href="https://www.youtube.com/watch?v=fevurdpiRYg">Intro to EDM</a> <br><a href="https://www.youtube.com/watch?v=6yq0VAriUIQ">EMD lecture</a> <br>
+<br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-28 February
+<td style="text-align:center;width: 4em; ">
+25 Feb
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Mark <br>
 </td>
 <td style="text-align:left;">
 Frequency domain <br>Fourier transforms <br>Spectral analysis <br>Wavelet analysis <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%208/lec_16_freq_domain.Rmd">Rmd 1</a><br><br><a href="Lectures/Week%208/lec_16_freq_domain.html">html 1</a>
+<td style="text-align:center;">
+<br><br>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c1e4c5db-4a11-46ba-813d-aa020163c219">Panapto</a>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/N-9kgB6T17o">YouTube</a>
-</td>
-<td style="text-align:center;">
-<a href="https://www.eecis.udel.edu/~amer/CISC651/IEEEwavelet.pdf">Graps (1995)</a> <br><a href="https://staff.washington.edu/dbp/wmtsa.html">Percival &amp; Walden (2000)</a> <br>
+<br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-5 March
+<td style="text-align:center;width: 4em; ">
+2 Mar
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eli <br>
 </td>
 <td style="text-align:left;">
-Estimating interaction strengths <br>Gompertz models <br>Stability metrics <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<br><a href="Lectures/Week%209/lec_17_estimating_interactions.pdf">pdf 1</a><br>
+Exponential smoothing models (ETS) <br>Crossvalidation tests <br>Forecasting with ETS models <br>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1731178b-5171-4e09-99b3-aa070163a1f2">Panapto</a>
+<br><br>
 </td>
 <td style="text-align:center;">
-<a href="https://youtu.be/lXasbuMdUT4">YouTube</a>
 </td>
 <td style="text-align:center;">
-<a href="https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1890/13-0996.1">Hampton et al 2013</a> <br><a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9615%282003%29073%5B0301%3AECSAEI%5D2.0.CO%3B2">Ives et al 2003</a> <br><a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 14</a> <br>
+<br>
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 8em; ">
-7 March
+<td style="text-align:center;width: 4em; ">
+4 Mar
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 4em; ">
 Eric <br>
 </td>
 <td style="text-align:left;">
 Spatial and spatio-temporal models <br>
 </td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%209/lec_18_spatiotemporal.Rmd">Rmd 1</a><br><br><a href="Lectures/Week%209/lec_18_spatiotemporal.html">html 1</a>
+<td style="text-align:center;">
+<br><br>
 </td>
 <td style="text-align:center;">
-<a href="https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=10c366d6-e1e8-4b8a-bcaa-aa090163c5c8">Panapto</a>
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-<a href="https://github.com/nwfsc-timeseries/atsa/tree/master/Lectures/Week%209">GitHub folder with code</a> <br>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 8em; ">
-12 March
-</td>
-<td style="text-align:center;">
-Eric/Mark/Eli <br>
-</td>
-<td style="text-align:left;">
-Zero-inflated data <br>Perturbation analysis <br>outliers <br>standardized residuals <br>
-</td>
-<td style="text-align:center;width: 8em; ">
-<a href="Lectures/Week%2010/lec_19_zero-inflated.Rmd">Rmd 1</a><br><a href="Lectures/Week%2010/lec_19_perturbations.pdf">pdf 1</a><br><a href="Lectures/Week%2010/lec_19_zero-inflated.html">html 1</a>
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-<a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.2041-210X.2010.00021.x">O’hara and Kotze 2010</a> <br><a href="https://amstat.tandfonline.com/doi/abs/10.1080/19466315.2017.1369900?journalCode=usbr20#.XIe-RBNKiM4">Ekwaru et al. 2017</a> <br><a href="https://cran.r-project.org/web/packages/MARSS/vignettes/UserGuide.pdf">HWS18a: Chap 12</a> <br>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 8em; ">
-14 March
 </td>
 <td style="text-align:center;">
 <br>
 </td>
-<td style="text-align:left;">
-Warlick-Pinniped stranding data <br>Lowe-Bull trout life history trends <br>McGill-Coastal productivity trends <br>Feddern-Coastal stream flow patterns <br>Sorel-Juvenile chinook timing <br>
+</tr>
+<tr>
+<td style="text-align:center;width: 4em; ">
+9 Mar
 </td>
-<td style="text-align:center;width: 8em; ">
+<td style="text-align:center;width: 4em; ">
+<br>
+</td>
+<td style="text-align:left;">
+Student presentations <br>
+</td>
+<td style="text-align:center;">
 <br><br>
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+<br>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4em; ">
+11 Mar
+</td>
+<td style="text-align:center;width: 4em; ">
+<br>
+</td>
+<td style="text-align:left;">
+Student presentations <br>
+</td>
+<td style="text-align:center;">
+<br><br>
 </td>
 <td style="text-align:center;">
 </td>
@@ -715,6 +775,8 @@ Warlick-Pinniped stranding data <br>Lowe-Bull trout life history trends <br>McGi
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 
 
 
@@ -725,7 +787,7 @@ Warlick-Pinniped stranding data <br>Lowe-Bull trout life history trends <br>McGi
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -733,6 +795,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
